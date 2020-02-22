@@ -5,6 +5,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"os"
+	"satya-labs/database/models"
 )
 
 func Initialize() (*gorm.DB, error) {
@@ -15,5 +16,6 @@ func Initialize() (*gorm.DB, error) {
 		panic(err)
 	}
 	fmt.Println("Connected to Database")
+	models.Migrate(db)
 	return db, err
 }
